@@ -1,0 +1,9 @@
+{
+  "name": "adventofcode-2021",
+  "version": "1.0.0",
+  "author": "Matthew Francis Brunetti",
+  "license": "MIT",
+  "dependencies": {
+    "lodash": "^4.17.21"
+  }
+}
