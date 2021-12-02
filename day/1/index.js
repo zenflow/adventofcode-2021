@@ -2,26 +2,21 @@ const {readFileSync} = require('fs')
 const _ = require('lodash')
 const readings = readFileSync(`${__dirname}/data.txt`).toString('utf8').split('\n').map(Number)
 
-{
-    let numberOfIncreases = 0
-    for (let i = 1; i < readings.length; i++) {
-        if (readings[i] > readings[i - 1]) {
-            numberOfIncreases++
+function countIncreases(numbers) {
+    let count = 0
+    for (let i = 1; i < numbers.length; i++) {
+        if (numbers[i] > numbers[i - 1]) {
+            count++
         }
     }
-    console.log('Answer 1:', numberOfIncreases)
+    return count
 }
-{
-    const readingsPerSum = 3
-    const sums = Array.from(readings.keys())
-        .slice(0, 1 - readingsPerSum)
-        .map(i => _.sum(readings.slice(i, i + readingsPerSum)))
 
-    let numberOfIncreases = 0
-    for (let i = 1; i < sums.length; i++) {
-        if (sums[i] > sums[i - 1]) {
-            numberOfIncreases++
-        }
-    }
-    console.log('Answer 2:', numberOfIncreases)
-}
+console.log('Answer 1:', countIncreases(readings))
+
+const readingsPerSum = 3
+const sums = Array.from(readings.keys())
+    .slice(0, 1 - readingsPerSum)
+    .map(i => _.sum(readings.slice(i, i + readingsPerSum)))
+
+console.log('Answer 2:', countIncreases(sums))
